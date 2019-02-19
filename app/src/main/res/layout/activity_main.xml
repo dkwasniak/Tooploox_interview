@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_activity_background"
+        tools:context="com.tooploox.activity.MainActivity">
+
+
+    <TextView
+            android:id="@+id/headerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/where_to_search"
+            android:textColor="@color/material_color_white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@id/hguideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/material_baseline_grid_7x"
+            android:background="@drawable/white_rounded_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/material_baseline_grid_1x"
+            android:text="@string/next"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.5"/>
+
+    <com.tooploox.widget.SourceButton
+            android:id="@+id/iTunesSourceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_3x"
+            android:clickable="true"
+            android:focusable="true"
+            app:label="iTunes"
+            app:layout_constraintEnd_toStartOf="@id/localSourceButton"
+            app:layout_constraintStart_toStartOf="@id/headerTextView"
+            app:layout_constraintTop_toBottomOf="@id/headerTextView"
+            app:source="iTunes"/>
+
+    <com.tooploox.widget.SourceButton
+            android:id="@+id/localSourceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_3x"
+            android:clickable="true"
+            android:focusable="true"
+            app:label="Local"
+            app:layout_constraintEnd_toEndOf="@id/headerTextView"
+            app:layout_constraintStart_toEndOf="@id/iTunesSourceButton"
+            app:layout_constraintTop_toBottomOf="@id/headerTextView"
+            app:source="Local"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hguideline"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

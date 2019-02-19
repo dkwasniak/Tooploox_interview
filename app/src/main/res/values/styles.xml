@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <declare-styleable name="SourceButton">
+        <attr name="label" format="string"/>
+        <attr name="source" format="enum">
+            <enum name="iTunes" value="0"/>
+            <enum name="Local" value="1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
