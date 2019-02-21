@@ -31,7 +31,6 @@ class SongsViewPresenter @Inject constructor(
                             view?.showProgress(false)
                         },
                         onError = {
-                            it.printStackTrace()
                             view?.showError()
                             view?.showProgress(false)
                         }

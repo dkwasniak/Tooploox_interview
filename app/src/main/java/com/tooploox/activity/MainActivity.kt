@@ -45,10 +45,6 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter.detach()
     }
 
-    override fun showError() {
-
-    }
-
     override fun showMissingSelectionInfo() {
         contentView.showSnackbar(R.string.missing_selection)
     }

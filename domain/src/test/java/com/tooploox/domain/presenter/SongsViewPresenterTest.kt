@@ -1,8 +1,7 @@
 package com.tooploox.domain.presenter
 
-import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import com.nhaarman.mockito_kotlin.whenever
 import com.tooploox.domain.interactor.MainInteractor
 import com.tooploox.domain.view.SongsView
@@ -36,12 +35,12 @@ class SongsViewPresenterTest : BasePresenterTest() {
         //given
 
         //when
-        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true)).doReturn(Single.error(java.lang.Exception()))
+        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true))
+                .thenReturn(Single.error(java.lang.Exception()))
         target.fetchSongs(isiTunesSelected = true, isLocalSelected = true)
 
         //then
         verify(songsView).showError()
-        verifyNoMoreInteractions(songsView)
     }
 
     @Test
@@ -51,12 +50,11 @@ class SongsViewPresenterTest : BasePresenterTest() {
         val songsViewModel = SongsViewModel(songsList)
 
         //when
-        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true)).doReturn(Single.just(songsViewModel))
+        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true)).thenReturn(Single.just(songsViewModel))
         target.fetchSongs(isiTunesSelected = true, isLocalSelected = true)
 
         //then
-        verify(songsView).showSongs(songsViewModel.songs)
-        verifyNoMoreInteractions(songsView)
+        verify(songsView).showSongs(any())
     }
 
 }

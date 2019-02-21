@@ -20,10 +20,7 @@ class MainRepositoryImpl(
     override fun fetchSongs(isiTunesSelected: Boolean, localSelected: Boolean): Single<SongsDomainModel> {
         return if (isiTunesSelected && localSelected) {
             Single.zip(fetchApiSongs(), fetchLocalSongs(), BiFunction { apiSongs, localSongs ->
-                val list = mutableListOf<SongDomainModel>()
-                list.addAll(songsMapper.mapSongApiModelToDomainModel(apiSongs))
-                list.addAll(songsMapper.mapSongDbModelToDomainModel(localSongs))
-                SongsDomainModel(list)
+                SongsDomainModel(mergeSources(apiSongs, localSongs))
             })
         } else if (isiTunesSelected) {
             fetchApiSongs().map {
@@ -34,6 +31,13 @@ class MainRepositoryImpl(
                 songsMapper.mapSongDbModelListToSongsDomainModel(it)
             }
         }
+    }
+
+    private fun mergeSources(apiSongs: List<SongApiModel>, localSongs: List<SongDbModel>): MutableList<SongDomainModel> {
+        val list = mutableListOf<SongDomainModel>()
+        list.addAll(songsMapper.mapSongApiModelToDomainModel(apiSongs))
+        list.addAll(songsMapper.mapSongDbModelToDomainModel(localSongs))
+        return list
     }
 
     private fun fetchLocalSongs(): Single<List<SongDbModel>> {
