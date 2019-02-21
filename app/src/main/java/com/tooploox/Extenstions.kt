@@ -32,8 +32,8 @@ fun ViewGroup.layoutInflater(): LayoutInflater {
 
 fun View.onClickWithDebounce(consumer: (Any) -> Unit) {
     RxView.clicks(this)
-            .throttleFirst(300, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-            .subscribe(consumer)
+        .throttleFirst(300, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+        .subscribe(consumer)
 }
 
 fun View.showSnackbar(@StringRes id: Int) {

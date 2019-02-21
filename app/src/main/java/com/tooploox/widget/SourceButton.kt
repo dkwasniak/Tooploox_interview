@@ -10,7 +10,7 @@ import com.tooploox.visible
 import kotlinx.android.synthetic.main.source_button_widget.view.*
 
 class SourceButton @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     var label: String = ""

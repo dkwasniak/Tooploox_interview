@@ -1,8 +1,8 @@
 package com.tooploox.di
 
-import com.tooploox.domain.di.SchedulersProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.tooploox.domain.di.SchedulersProvider
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler

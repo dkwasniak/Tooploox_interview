@@ -1,4 +1,6 @@
 package com.tooploox.domain.viewmodel
 
-class SongsViewModel {
-}
+data class SongsViewModel(
+
+        val songs: List<SongViewModel>
+)

@@ -3,6 +3,7 @@ package com.tooploox.domain.presenter
 import com.tooploox.domain.di.SchedulersProvider
 import com.tooploox.domain.interactor.MainInteractor
 import com.tooploox.domain.view.SongsView
+import java.util.*
 import javax.inject.Inject
 
 class SongsViewPresenter @Inject constructor(
@@ -12,6 +13,9 @@ class SongsViewPresenter @Inject constructor(
 ) : BasePresenter<SongsView>() {
 
 
+    fun fetchSongs(isiTunesSelected: Boolean, isLocalSelected: Boolean) {
+        mainInteractor.fetchSongs(isiTunesSelected, isLocalSelected)
+    }
    /* fun subscribeForQueryChanges(onTextChangeSubscription: Observable<String>) {
         onTextChangeSubscription
             .applySchedulers(schedulersProvider)

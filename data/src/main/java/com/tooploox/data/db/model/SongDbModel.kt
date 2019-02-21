@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class SongDbModel(
 
     @SerializedName("Song Clean")
-    var songClean: String? = null,
+    var songClean: String,
 
     @SerializedName("ARTIST CLEAN")
-    var artistClean: String? = null,
+    var artistClean: String,
 
     @SerializedName("Release Year")
     var releaseYear: String? = null,

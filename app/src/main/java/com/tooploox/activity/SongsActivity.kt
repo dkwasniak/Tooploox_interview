@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.tooploox.R
 import com.tooploox.applicationComponent
 import com.tooploox.domain.presenter.SongsViewPresenter
 import com.tooploox.domain.view.SongsView
 import kotlinx.android.synthetic.main.activity_songs.*
 import javax.inject.Inject
-import com.tooploox.R
 
 class SongsActivity : AppCompatActivity(), SongsView {
 
@@ -21,13 +21,12 @@ class SongsActivity : AppCompatActivity(), SongsView {
         const val LOCAL_KEY = "local_key"
 
         fun create(context: Context, isiTunesSelected: Boolean, isLocalSelected: Boolean): Intent {
-            val intent = Intent(context, SongsActivity::class.java).apply {
+            return Intent(context, SongsActivity::class.java).apply {
                 val bundle = Bundle()
                 bundle.putBoolean(ITUNES_KEY, isiTunesSelected)
                 bundle.putBoolean(LOCAL_KEY, isLocalSelected)
-                this.putExtras(bundle)
+                putExtras(bundle)
             }
-            return intent
         }
     }
 
@@ -38,10 +37,14 @@ class SongsActivity : AppCompatActivity(), SongsView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_songs)
         applicationComponent.inject(this)
+        initToolbar()
+    }
 
+    private fun initToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Piosenki"
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+        supportActionBar?.title = getString(R.string.songs_activity_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

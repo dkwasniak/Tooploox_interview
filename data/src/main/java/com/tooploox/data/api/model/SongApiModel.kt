@@ -5,15 +5,12 @@ import com.google.gson.annotations.SerializedName
 data class SongApiModel (
 
     @SerializedName("trackId")
-    var trackId: Int? = null,
+    var trackId: Int,
 
     @SerializedName("artistName")
-    var artistName: String? = null,
+    var artistName: String,
 
     @SerializedName("trackName")
-    var trackName: String? = null,
-
-    @SerializedName("releaseDate")
-    var releaseDate: String? = null
+    var trackName: String
 
 )

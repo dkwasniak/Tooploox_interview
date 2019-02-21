@@ -2,7 +2,7 @@ package com.nomtek.domain.interactor
 
 import com.tooploox.domain.api.model.PostApiModel
 import com.tooploox.domain.interactor.MainInteractor
-import com.tooploox.domain.mapper.PostApiModelToViewModelMapper
+import com.tooploox.domain.mapper.SongsDomainModelToViewModelMapper
 import com.tooploox.domain.viewmodel.PostViewModel
 import com.tooploox.domain.repository.MainRepository
 import org.junit.Before
@@ -22,7 +22,7 @@ class MainInteractorTest {
     lateinit var mainRepository: MainRepository
 
     @Mock
-    lateinit var mapper: PostApiModelToViewModelMapper
+    lateinit var mapper: SongsDomainModelToViewModelMapper
 
     private var mainTestSubscriber = TestSubscriber<List<PostViewModel>>()
 

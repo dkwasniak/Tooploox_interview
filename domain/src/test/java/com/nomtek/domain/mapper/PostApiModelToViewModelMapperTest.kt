@@ -1,7 +1,7 @@
 package com.nomtek.domain.mapper
 
 import com.tooploox.domain.api.model.PostApiModel
-import com.tooploox.domain.mapper.PostApiModelToViewModelMapper
+import com.tooploox.domain.mapper.SongsDomainModelToViewModelMapper
 import com.tooploox.domain.viewmodel.PostViewModel
 import org.junit.Before
 import org.junit.Test
@@ -9,11 +9,11 @@ import kotlin.test.assertEquals
 
 class PostApiModelToViewModelMapperTest {
 
-    private lateinit var target: PostApiModelToViewModelMapper
+    private lateinit var target: SongsDomainModelToViewModelMapper
 
     @Before
     fun setUp() {
-        target = PostApiModelToViewModelMapper()
+        target = SongsDomainModelToViewModelMapper()
     }
 
     @Test

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tooploox.R
 import com.tooploox.layoutInflater
 import com.tooploox.model.SongsViewModel
+import kotlinx.android.synthetic.main.song_list_item.view.*
 
 class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.SongViewHolder>() {
 
@@ -25,9 +26,10 @@ class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.S
     }
 
 
-    class SongViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class SongViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(songsViewModel: SongsViewModel) {
-
+            view.songTitleTextView.text = songsViewModel.title
+            view.artistNameTextView.text = songsViewModel.artist
         }
     }
 

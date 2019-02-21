@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/material_baseline_grid_10x"
-    android:layout_height="@dimen/material_baseline_grid_10x"
-    android:background="@drawable/white_rounded_button">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="@dimen/material_baseline_grid_10x"
+        android:layout_height="@dimen/material_baseline_grid_10x"
+        android:background="@drawable/white_rounded_button">
 
     <ImageView
-        android:id="@+id/iconImageView"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:src="@drawable/ic_itunes"
-        app:layout_constraintBottom_toTopOf="@id/labelTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+            android:id="@+id/iconImageView"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_itunes"
+            app:layout_constraintBottom_toTopOf="@id/labelTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
     <TextView
-        android:id="@+id/labelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/material_baseline_grid_1x"
-        android:fontFamily="sans-serif-light"
-        android:textSize="12sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iconImageView"
-        tools:text="iTunes" />
+            android:id="@+id/labelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            android:fontFamily="sans-serif-light"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iconImageView"
+            tools:text="iTunes"/>
 
 
     <View
-        android:id="@+id/maskView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:background="#9b8b8b8b"/>
+            android:id="@+id/maskView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="#9b8b8b8b"/>
 
     <ImageView
-        android:id="@+id/checkBoxImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/material_baseline_grid_0.5x"
-        android:layout_marginEnd="@dimen/material_baseline_grid_0.5x"
-        app:srcCompat="@drawable/ic_check_box_24dp"/>
+            android:id="@+id/checkBoxImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/material_baseline_grid_0.5x"
+            android:layout_marginEnd="@dimen/material_baseline_grid_0.5x"
+            app:srcCompat="@drawable/ic_check_box_24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

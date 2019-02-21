@@ -1,4 +1,6 @@
 package com.tooploox.domainmodule
 
-class SongsDomainModel {
-}
+data class SongsDomainModel(
+
+        val songs: List<SongDomainModel>
+)

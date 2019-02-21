@@ -1,9 +1,9 @@
 package com.tooploox.domain.repository
 
-import com.tooploox.domain.api.model.autocomplete.SuggestionApiModel
+import com.tooploox.domainmodule.SongsDomainModel
 import io.reactivex.Observable
 
 interface MainRepository {
 
-    fun getAutoComplete(query: String): Observable<List<SuggestionApiModel>>
+    fun fetchSongs(isiTunesSelected: Boolean, localSelected: Boolean): Observable<SongsDomainModel>
 }
