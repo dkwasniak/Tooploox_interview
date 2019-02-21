@@ -1,43 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <ImageView
-            android:id="@+id/songPhotoImageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/black"/>
+        android:id="@+id/songPhotoImageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/songTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="@id/songPhotoImageView"
-            android:layout_marginTop="@dimen/material_baseline_grid_1x"
-            android:layout_marginStart="@dimen/material_baseline_grid_1.5x"
-            app:layout_constraintStart_toEndOf="@id/songPhotoImageView"
-            tools:text="Song title"/>
+        android:id="@+id/songTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_baseline_grid_1.5x"
+        android:layout_marginTop="@dimen/material_baseline_grid_1x"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/songPhotoImageView"
+        app:layout_constraintTop_toTopOf="@id/songPhotoImageView"
+        tools:text="Song title" />
 
     <TextView
-            android:id="@+id/artistNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/gray"
-            android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/songTitleTextView"
-            android:layout_marginStart="@dimen/material_baseline_grid_1.5x"
-            app:layout_constraintStart_toEndOf="@id/songPhotoImageView"
-            tools:text="artist name"/>
+        android:id="@+id/artistNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_baseline_grid_1.5x"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/songPhotoImageView"
+        app:layout_constraintTop_toBottomOf="@id/songTitleTextView"
+        tools:text="artist name" />
+
+    <TextView
+        android:id="@+id/releaseDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_baseline_grid_1.5x"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/artistNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/songTitleTextView"
+        tools:text="1992" />
+
+    <ImageView
+        android:id="@+id/songSourceImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="@dimen/material_baseline_grid_1x"
+        android:layout_marginBottom="@dimen/material_baseline_grid_1x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

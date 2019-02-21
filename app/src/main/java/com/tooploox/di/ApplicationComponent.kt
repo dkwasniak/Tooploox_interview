@@ -5,6 +5,7 @@ import com.tooploox.activity.SongsActivity
 import com.tooploox.data.di.ApiModule
 import com.tooploox.data.di.DataModule
 import com.tooploox.domain.di.DomainModule
+import com.tooploox.view.songlist.SongsRecyclerViewAdapter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,4 +16,6 @@ interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(songsActivity: SongsActivity)
+
+    fun inject(songsRecyclerViewAdapter: SongsRecyclerViewAdapter)
 }

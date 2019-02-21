@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.tooploox.R
-import com.tooploox.gone
-import com.tooploox.inflate
-import com.tooploox.visible
+import com.tooploox.utils.gone
+import com.tooploox.utils.inflate
+import com.tooploox.utils.visible
 import kotlinx.android.synthetic.main.source_button_widget.view.*
 
 class SourceButton @JvmOverloads constructor(

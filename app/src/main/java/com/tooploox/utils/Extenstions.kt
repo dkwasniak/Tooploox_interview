@@ -1,4 +1,4 @@
-package com.tooploox
+package com.tooploox.utils
 
 import android.view.LayoutInflater
 import android.view.View

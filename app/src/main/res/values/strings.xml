@@ -4,4 +4,5 @@
     <string name="where_to_search">Wybierz gdzie mamy \nszukać Twojej muzyki</string>
     <string name="missing_selection">Wybierz conajmniej jedno źródło.</string>
     <string name="songs_activity_title">Piosenki</string>
+    <string name="something_went_wrong">Ups... wystąpił błąd.</string>
 </resources>

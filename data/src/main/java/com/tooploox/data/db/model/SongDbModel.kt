@@ -11,21 +11,6 @@ data class SongDbModel(
     var artistClean: String,
 
     @SerializedName("Release Year")
-    var releaseYear: String? = null,
-
-    @SerializedName("COMBINED")
-    var combined: String? = null,
-
-    @SerializedName("First?")
-    var first: Int? = null,
-
-    @SerializedName("Year?")
-    var year: Int? = null,
-
-    @SerializedName("PlayCount")
-    var playCount: Int? = null,
-
-    @SerializedName("F*G")
-    var fG: Int? = null
+    var releaseDate: String
 
 )

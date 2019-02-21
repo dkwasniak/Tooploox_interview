@@ -15,7 +15,7 @@ class RicardoApplication : Application() {
 
     val applicationComponent: ApplicationComponent =
         DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule())
+            .applicationModule(ApplicationModule(this))
             .apiModule(ApiModule(BuildConfig.SERVER_URL)).build()
 
 

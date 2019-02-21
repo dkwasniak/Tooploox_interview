@@ -1,14 +1,14 @@
 package com.tooploox.data.repository
 
-import com.tooploox.data.SongsDataModelsToDomainModelMapper
 import com.tooploox.data.api.MainApiService
 import com.tooploox.data.api.model.SongApiModel
-import com.tooploox.data.db.LocalSongsService
 import com.tooploox.data.db.model.SongDbModel
+import com.tooploox.data.mapper.SongsDataModelsToDomainModelMapper
+import com.tooploox.data.service.LocalSongsService
 import com.tooploox.domain.repository.MainRepository
 import com.tooploox.domainmodule.SongDomainModel
 import com.tooploox.domainmodule.SongsDomainModel
-import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
 class MainRepositoryImpl(
@@ -17,9 +17,9 @@ class MainRepositoryImpl(
         private val songsMapper: SongsDataModelsToDomainModelMapper
 ) : MainRepository {
 
-    override fun fetchSongs(isiTunesSelected: Boolean, localSelected: Boolean): Observable<SongsDomainModel> {
+    override fun fetchSongs(isiTunesSelected: Boolean, localSelected: Boolean): Single<SongsDomainModel> {
         return if (isiTunesSelected && localSelected) {
-            Observable.zip(fetchApiSongs(), fetchLocalSongs(), BiFunction { apiSongs, localSongs ->
+            Single.zip(fetchApiSongs(), fetchLocalSongs(), BiFunction { apiSongs, localSongs ->
                 val list = mutableListOf<SongDomainModel>()
                 list.addAll(songsMapper.mapSongApiModelToDomainModel(apiSongs))
                 list.addAll(songsMapper.mapSongDbModelToDomainModel(localSongs))
@@ -36,16 +36,16 @@ class MainRepositoryImpl(
         }
     }
 
-    private fun fetchLocalSongs(): Observable<List<SongDbModel>> {
+    private fun fetchLocalSongs(): Single<List<SongDbModel>> {
         return localSongsService.fetchSongs().map { it.songs }
     }
 
-    private fun fetchApiSongs(): Observable<List<SongApiModel>> {
+    private fun fetchApiSongs(): Single<List<SongApiModel>> {
         return mainApiService.fetchSongs().flatMap { response ->
             if (response.isSuccessful) {
-                Observable.just(response.body()).map { it.results }
+                Single.just(response.body()).map { it.results }
             } else {
-                Observable.empty()
+                Single.error(Exception())
             }
         }
     }

@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tooploox.model.SongsViewModel
+import com.tooploox.domain.viewmodel.SongViewModel
 
 class SongsRecyclerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -15,9 +15,10 @@ class SongsRecyclerView @JvmOverloads constructor(
     init {
         layoutManager = LinearLayoutManager(context)
         adapter = songsAdapter
+        addItemDecoration(SongRecyclerViewItemDecorator(context))
     }
 
-    fun setItems(songs: List<SongsViewModel>) {
+    fun setItems(songs: List<SongViewModel>) {
         songsAdapter.items = songs
         songsAdapter.notifyDataSetChanged()
     }

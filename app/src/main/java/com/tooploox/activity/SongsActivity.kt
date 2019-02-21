@@ -8,6 +8,10 @@ import com.tooploox.R
 import com.tooploox.applicationComponent
 import com.tooploox.domain.presenter.SongsViewPresenter
 import com.tooploox.domain.view.SongsView
+import com.tooploox.domain.viewmodel.SongViewModel
+import com.tooploox.utils.gone
+import com.tooploox.utils.showSnackbar
+import com.tooploox.utils.visible
 import kotlinx.android.synthetic.main.activity_songs.*
 import javax.inject.Inject
 
@@ -51,10 +55,30 @@ class SongsActivity : AppCompatActivity(), SongsView {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.attach(this)
+        presenter.fetchSongs(intent?.extras?.getBoolean(ITUNES_KEY) ?: false,
+                intent?.extras?.getBoolean(LOCAL_KEY) ?: false)
     }
 
     override fun onDetachedFromWindow() {
         presenter.detach()
         super.onDetachedFromWindow()
+    }
+
+    override fun showError() {
+        super.showError()
+        contentView.showSnackbar(R.string.something_went_wrong)
+    }
+
+    override fun showSongs(songs: List<SongViewModel>) {
+        songsRecyclerView.visible()
+        songsRecyclerView.setItems(songs)
+    }
+
+    override fun showProgress(show: Boolean) {
+        if (show) {
+            progressBar.visible()
+        } else {
+            progressBar.gone()
+        }
     }
 }

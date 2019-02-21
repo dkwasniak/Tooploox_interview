@@ -4,13 +4,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tooploox.R
-import com.tooploox.layoutInflater
-import com.tooploox.model.SongsViewModel
+import com.tooploox.applicationComponent
+import com.tooploox.domain.viewmodel.SongViewModel
+import com.tooploox.domainmodule.Source
+import com.tooploox.utils.TooplooxImageLoader
+import com.tooploox.utils.layoutInflater
 import kotlinx.android.synthetic.main.song_list_item.view.*
+import javax.inject.Inject
 
 class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.SongViewHolder>() {
 
-    var items: List<SongsViewModel> = emptyList()
+    @Inject
+    lateinit var imageLoader: TooplooxImageLoader
+
+    var items: List<SongViewModel> = emptyList()
+
+    init {
+        applicationComponent.inject(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val view = parent.layoutInflater().inflate(R.layout.song_list_item, parent, false)
@@ -26,10 +37,19 @@ class SongsRecyclerViewAdapter : RecyclerView.Adapter<SongsRecyclerViewAdapter.S
     }
 
 
-    class SongViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(songsViewModel: SongsViewModel) {
-            view.songTitleTextView.text = songsViewModel.title
-            view.artistNameTextView.text = songsViewModel.artist
+    inner class SongViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(songsViewModel: SongViewModel) {
+            with(songsViewModel) {
+                view.songTitleTextView.text = title
+                view.artistNameTextView.text = artistName
+                view.releaseDateTextView.text = releaseData
+                imageLoader.loadInto(coverImageUrl, view.songPhotoImageView)
+                when (source) {
+                    Source.LOCAL -> view.songSourceImageView.setImageResource(R.drawable.ic_local)
+                    Source.ITUNES -> view.songSourceImageView.setImageResource(R.drawable.ic_itunes)
+                }
+            }
+
         }
     }
 

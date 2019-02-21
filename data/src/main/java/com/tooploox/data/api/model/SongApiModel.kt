@@ -11,6 +11,12 @@ data class SongApiModel (
     var artistName: String,
 
     @SerializedName("trackName")
-    var trackName: String
+    var trackName: String,
+
+    @SerializedName("artworkUrl100")
+    var coverImageUrl: String,
+
+    @SerializedName("releaseDate")
+    var releaseData: String
 
 )

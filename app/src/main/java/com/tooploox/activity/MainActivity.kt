@@ -6,8 +6,8 @@ import com.tooploox.R
 import com.tooploox.applicationComponent
 import com.tooploox.domain.presenter.MainViewPresenter
 import com.tooploox.domain.view.MainView
-import com.tooploox.onClickWithDebounce
-import com.tooploox.showSnackbar
+import com.tooploox.utils.onClickWithDebounce
+import com.tooploox.utils.showSnackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
