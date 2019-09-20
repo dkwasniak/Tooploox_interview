@@ -42,7 +42,7 @@ class MainInteractorTest {
         whenever(mainRepository.fetchSongs(isiTunesSelected = true, localSelected = true))
                 .thenReturn(Single.just(domainResult))
         whenever(mapper.mapSongsDomainModelToViewModel(domainResult)).thenReturn(viewModel)
-        val observer = target.fetchSongs(true, true).test()
+        val observer = target.fetchSongs(true, true, isThiredSelected).test()
 
         //then
         observer.assertNoErrors()

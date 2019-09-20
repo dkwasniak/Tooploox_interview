@@ -35,9 +35,17 @@ class SongsViewPresenterTest : BasePresenterTest() {
         //given
 
         //when
-        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true))
+        whenever(mainInteractor.fetchSongs(
+            isiTunesSelected = true,
+            isLocalSelected = true,
+            thirdSelected = isThiredSelected
+        ))
                 .thenReturn(Single.error(java.lang.Exception()))
-        target.fetchSongs(isiTunesSelected = true, isLocalSelected = true)
+        target.fetchSongs(
+            isiTunesSelected = true,
+            isLocalSelected = true,
+            isThiredSelected = intent?.extras?.getBoolean(THIRD_KEY) ?: false
+        )
 
         //then
         verify(songsView).showError()
@@ -50,8 +58,16 @@ class SongsViewPresenterTest : BasePresenterTest() {
         val songsViewModel = SongsViewModel(songsList)
 
         //when
-        whenever(mainInteractor.fetchSongs(isiTunesSelected = true, isLocalSelected = true)).thenReturn(Single.just(songsViewModel))
-        target.fetchSongs(isiTunesSelected = true, isLocalSelected = true)
+        whenever(mainInteractor.fetchSongs(
+            isiTunesSelected = true,
+            isLocalSelected = true,
+            thirdSelected = isThiredSelected
+        )).thenReturn(Single.just(songsViewModel))
+        target.fetchSongs(
+            isiTunesSelected = true,
+            isLocalSelected = true,
+            isThiredSelected = intent?.extras?.getBoolean(THIRD_KEY) ?: false
+        )
 
         //then
         verify(songsView).showSongs(any())

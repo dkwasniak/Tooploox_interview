@@ -5,49 +5,59 @@ import com.tooploox.data.api.model.SongApiModel
 import com.tooploox.data.db.model.SongDbModel
 import com.tooploox.data.mapper.SongsDataModelsToDomainModelMapper
 import com.tooploox.data.service.LocalSongsService
+import com.tooploox.domain.presenter.SourceType
 import com.tooploox.domain.repository.MainRepository
 import com.tooploox.domainmodule.SongDomainModel
 import com.tooploox.domainmodule.SongsDomainModel
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 
 class MainRepositoryImpl(
-        private val mainApiService: MainApiService,
-        private val localSongsService: LocalSongsService,
-        private val songsMapper: SongsDataModelsToDomainModelMapper
+    private val mainApiService: MainApiService,
+    private val localSongsService: LocalSongsService,
+    private val songsMapper: SongsDataModelsToDomainModelMapper
 ) : MainRepository {
 
-    override fun fetchSongs(isiTunesSelected: Boolean, localSelected: Boolean): Single<SongsDomainModel> {
-        return if (isiTunesSelected && localSelected) {
-            Single.zip(fetchApiSongs(), fetchLocalSongs(), BiFunction { apiSongs, localSongs ->
-                SongsDomainModel(mergeSources(apiSongs, localSongs))
-            })
-        } else if (isiTunesSelected) {
-            fetchApiSongs().map {
-                songsMapper.mapSongApiModelListToSongsDomainModel(it)
-            }
-        } else {
-            fetchLocalSongs().map {
-                songsMapper.mapSongDbModelListToSongsDomainModel(it)
+    override fun fetchSongs(listOfSources: List<SourceType>): Single<SongsDomainModel> {
+        return Single.merge(provideListOfSelectedSources(listOfSources)).map {
+            SongsDomainModel(it)
+        }.singleOrError()
+    }
+
+    private fun provideListOfSelectedSources(listOfSources: List<SourceType>): List<Single<List<SongDomainModel>>> {
+        return listOfSources.map {
+            when (it) {
+                SourceType.ITUNES -> fetchApiSongs()
+                SourceType.LOCAL -> fetchLocalSongs()
+                SourceType.THIRD -> fetchThirdSongs()
             }
         }
     }
 
-    private fun mergeSources(apiSongs: List<SongApiModel>, localSongs: List<SongDbModel>): MutableList<SongDomainModel> {
+    private fun mergeSources(
+        apiSongs: List<SongApiModel>,
+        localSongs: List<SongDbModel>,
+        thirdSongs: List<SongDbModel>
+    ): List<SongDomainModel> {
         val list = mutableListOf<SongDomainModel>()
         list.addAll(songsMapper.mapSongApiModelToDomainModel(apiSongs))
         list.addAll(songsMapper.mapSongDbModelToDomainModel(localSongs))
-        return list
+        return songsMapper.mapSongApiModelToDomainModel(apiSongs) +
+                songsMapper.mapSongDbModelToDomainModel(localSongs) +
+                songsMapper.mapSongDbModelToDomainModel(thirdSongs)
     }
 
-    private fun fetchLocalSongs(): Single<List<SongDbModel>> {
-        return localSongsService.fetchSongs().map { it.songs }
+    private fun fetchLocalSongs(): Single<List<SongDomainModel>> {
+        return localSongsService.fetchSongs().map { it.songs }.map { songsMapper.mapSongDbModelToDomainModel(it) }
     }
 
-    private fun fetchApiSongs(): Single<List<SongApiModel>> {
+    private fun fetchThirdSongs(): Single<List<SongDomainModel>> {
+        return localSongsService.fetchSongs().map { it.songs }.map { songsMapper.mapSongDbModelToDomainModel(it) }
+    }
+
+    private fun fetchApiSongs(): Single<List<SongDomainModel>> {
         return mainApiService.fetchSongs().flatMap { response ->
             if (response.isSuccessful) {
-                Single.just(response.body()).map { it.results }
+                Single.just(response.body()).map { it.results }.map { songsMapper.mapSongApiModelToDomainModel(it) }
             } else {
                 Single.error(Exception())
             }

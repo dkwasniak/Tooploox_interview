@@ -5,7 +5,7 @@ interface MainView : BaseView {
 
     fun showMissingSelectionInfo()
 
-    fun goToSongsList(isiTunesSelected: Boolean, localSelected: Boolean)
+    fun goToSongsList(isiTunesSelected: Boolean, localSelected: Boolean, thirdSelected: Boolean)
 
 
 }

@@ -49,8 +49,12 @@ class MainActivity : AppCompatActivity(), MainView {
         contentView.showSnackbar(R.string.missing_selection)
     }
 
-    override fun goToSongsList(isiTunesSelected: Boolean, isLocalSelected: Boolean) {
-        startActivity(SongsActivity.create(this, isiTunesSelected, isLocalSelected))
+    override fun goToSongsList(
+        isiTunesSelected: Boolean,
+        isLocalSelected: Boolean,
+        isThirdSelected: Boolean
+    ) {
+        startActivity(SongsActivity.create(this, isiTunesSelected, isLocalSelected, isThirdSelected))
     }
 
 }

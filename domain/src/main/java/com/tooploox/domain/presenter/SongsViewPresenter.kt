@@ -21,9 +21,9 @@ class SongsViewPresenter @Inject constructor(
         subscriptions.clear()
     }
 
-    fun fetchSongs(isiTunesSelected: Boolean, isLocalSelected: Boolean) {
+    fun fetchSongs(listOfSources: List<SourceType>) {
         view?.showProgress(true)
-        subscriptions.add(mainInteractor.fetchSongs(isiTunesSelected, isLocalSelected)
+        subscriptions.add(mainInteractor.fetchSongs(listOfSources)
                 .compose(applySchedulers(schedulersProvider))
                 .subscribeBy(
                         onSuccess = {

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.tooploox.R
 import com.tooploox.applicationComponent
 import com.tooploox.domain.presenter.SongsViewPresenter
+import com.tooploox.domain.presenter.SourceType
 import com.tooploox.domain.view.SongsView
 import com.tooploox.domain.viewmodel.SongViewModel
 import com.tooploox.utils.gone
@@ -24,11 +25,20 @@ class SongsActivity : AppCompatActivity(), SongsView {
 
         const val LOCAL_KEY = "local_key"
 
-        fun create(context: Context, isiTunesSelected: Boolean, isLocalSelected: Boolean): Intent {
+        const val THIRD_KEY = "third_key"
+
+        fun create(
+            context: Context,
+            isiTunesSelected: Boolean,
+            isLocalSelected: Boolean,
+            thirdSelected: Boolean
+        ): Intent {
             return Intent(context, SongsActivity::class.java).apply {
                 val bundle = Bundle()
                 bundle.putBoolean(ITUNES_KEY, isiTunesSelected)
                 bundle.putBoolean(LOCAL_KEY, isLocalSelected)
+                bundle.putBoolean(THIRD_KEY, isiTunesSelected)
+                bundle.putSerializable("klucz", )
                 putExtras(bundle)
             }
         }
@@ -55,8 +65,7 @@ class SongsActivity : AppCompatActivity(), SongsView {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.attach(this)
-        presenter.fetchSongs(intent?.extras?.getBoolean(ITUNES_KEY) ?: false,
-                intent?.extras?.getBoolean(LOCAL_KEY) ?: false)
+        presenter.fetchSongs(listOf<SourceType>())
     }
 
     override fun onDetachedFromWindow() {

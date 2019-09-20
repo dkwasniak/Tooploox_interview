@@ -9,6 +9,10 @@ class MainViewPresenter @Inject constructor() : BasePresenter<MainView>() {
 
     private var isLocalSelected = false
 
+    private var isThirdSelected = false
+
+    private val sourcesList = mutableListOf<SourceType>()
+
 
     fun onLocalSourceSelect(isSelected: Boolean) {
         isLocalSelected = isSelected
@@ -18,12 +22,21 @@ class MainViewPresenter @Inject constructor() : BasePresenter<MainView>() {
         isiTunesSelected = isSelected
     }
 
+    fun onThirdSourceSelected(isSelected: Boolean) {
+        isThirdSelected = isSelected
+    }
+
     fun onNextButtonClicked() {
         if (isiTunesSelected || isLocalSelected) {
-            view?.goToSongsList(isiTunesSelected, isLocalSelected)
+            view?.goToSongsList(isiTunesSelected, isLocalSelected, isThirdSelected)
         } else {
             view?.showMissingSelectionInfo()
         }
     }
+}
 
+enum class SourceType {
+    ITUNES,
+    LOCAL,
+    THIRD
 }
